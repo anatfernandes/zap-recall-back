@@ -1,5 +1,5 @@
 import { MongoClient } from 'mongodb';
-import STATUS_CODE from '../enums/statusCode.js';
+import { STATUS_CODE } from './enums/statusCode.js';
 
 const mongoClient = new MongoClient(process.env.MONGO_URI);
 

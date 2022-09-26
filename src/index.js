@@ -1,14 +1,15 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import STATUS_CODE from '../enums/statusCode.js';
+import { STATUS_CODE } from './enums/statusCode.js';
+
 
 dotenv.config();
 
-const server = express;
+const server = express();
 
-server.use(cors());
 server.use(express.json());
+server.use(cors());
 
 
 server.get('/status', (req, res) => {

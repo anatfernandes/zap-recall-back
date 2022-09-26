@@ -1,4 +1,4 @@
-const STATUS_CODE = {
+const STATUS_CODE = Object.freeze({
     OK: 200,
     CREATED: 201,
     BAD_REQUEST: 400,
@@ -7,6 +7,6 @@ const STATUS_CODE = {
     CONFLICT: 409,
     UNPROCESSABLE_ENTITY: 422,
     SERVER_ERROR: 500,
-}
+})
 
-export STATUS_CODE;
+export { STATUS_CODE };
