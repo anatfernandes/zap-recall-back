@@ -1,5 +1,7 @@
 const COLLECTION = Object.freeze({
-    USERS: 'users',
-})
+	USERS: "users",
+	PUBLIC_CARDS: "publicCards",
+	PRIVATE_CARDS: "privateCards",
+});
 
 export { COLLECTION };
