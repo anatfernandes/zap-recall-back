@@ -18,6 +18,6 @@ server.get("/status", (req, res) => {
 	res.sendStatus(STATUS_CODE.OK);
 });
 
-server.listen(process.env.DEV_PORT, () =>
-	console.log(`Listening on port ${process.env.DEV_PORT}...`)
+server.listen(process.env.PORT, () =>
+	console.log(`Listening on port ${process.env.PORT}...`)
 );
