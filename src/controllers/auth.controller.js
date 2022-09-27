@@ -30,4 +30,23 @@ async function SignUp(req, res) {
 	res.sendStatus(STATUS_CODE.CREATED);
 }
 
-export { SignUp };
+async function SignIn(req, res) {
+	const { password } = req.body;
+	const { user } = res.locals;
+
+	if (!user)
+		return res
+			.status(STATUS_CODE.UNAUTHORIZED)
+			.send({ message: "Usuário ou senha inválida." });
+
+	const isValidPassword = bcrypt.compareSync(password, user.password);
+
+	if (!isValidPassword)
+		return res
+			.status(STATUS_CODE.UNAUTHORIZED)
+			.send({ message: "Usuário ou senha inválida." });
+
+	res.status(STATUS_CODE.OK).send({ key_access: user.key_access });
+}
+
+export { SignUp, SignIn };
