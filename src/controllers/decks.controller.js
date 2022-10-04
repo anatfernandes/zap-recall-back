@@ -19,4 +19,28 @@ async function createDeck(req, res) {
 	res.sendStatus(STATUS_CODE.CREATED);
 }
 
-export { createDeck };
+async function listDecks(req, res) {
+	const { key_access } = req.headers;
+
+	let allDecks;
+	let userDecks = [];
+
+	try {
+		allDecks = await db.collection(COLLECTION.PUBLIC_CARDS).find().toArray();
+
+		if (key_access) {
+			userDecks =
+				(await db.collection(COLLECTION.PRIVATE_CARDS).findOne({ key_access }))
+					?.decks || [];
+		}
+	} catch (error) {
+		console.log(error);
+		return res.sendStatus(STATUS_CODE.SERVER_ERROR);
+	}
+
+	allDecks = [...allDecks, ...userDecks];
+
+	res.status(STATUS_CODE.OK).send(allDecks);
+}
+
+export { createDeck, listDecks };
