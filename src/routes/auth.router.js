@@ -4,9 +4,7 @@ import { hasUser } from "../middlewares/auth.middleware.js";
 
 const router = express.Router();
 
-router.use(hasUser);
-
-router.post('/sign-up', SignUp);
-router.post('/sign-in', SignIn);
+router.post("/sign-up", hasUser, SignUp);
+router.post("/sign-in", hasUser, SignIn);
 
 export default router;

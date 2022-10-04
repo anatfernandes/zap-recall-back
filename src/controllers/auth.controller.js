@@ -27,6 +27,15 @@ async function SignUp(req, res) {
 		return res.sendStatus(STATUS_CODE.SERVER_ERROR);
 	}
 
+	try {
+		await db
+			.collection(COLLECTION.PRIVATE_CARDS)
+			.insertOne({ key_access, decks: [] });
+	} catch (error) {
+		console.log(error);
+		return res.sendStatus(STATUS_CODE.SERVER_ERROR);
+	}
+
 	res.sendStatus(STATUS_CODE.CREATED);
 }
 
